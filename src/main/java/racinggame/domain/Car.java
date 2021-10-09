@@ -5,16 +5,17 @@ public class Car {
     private final static String DASH = "-";
 
     private final CarName name;
-    private int position;
+    private final CarPosition position;
 
     public Car(String name) {
         this.name = new CarName(name);
+        this.position = new CarPosition();
     }
 
     public void play(RacingNumber racingNumber) {
         CarStatus carStatus = racingNumber.match();
         if (carStatus.isGo()) {
-            position++;
+            position.moveOneForward();
         }
     }
 
@@ -24,7 +25,7 @@ public class Car {
 
     private StringBuilder createPositionDisplay() {
         StringBuilder display = new StringBuilder();
-        for (int i = 0; i < position; i++) {
+        for (int i = 0; i < position.getPosition(); i++) {
             display.append(DASH);
         }
         return display;
