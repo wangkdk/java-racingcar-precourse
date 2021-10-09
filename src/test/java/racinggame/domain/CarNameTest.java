@@ -1,6 +1,7 @@
 package racinggame.domain;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,5 +26,13 @@ class CarNameTest {
         assertThatThrownBy(() -> new CarName("test12"))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(VALIDATE_CAR_NAME_MESSAGE);
+    }
+
+    @Test
+    @DisplayName("자동차_이름_가져오기")
+    void get_car_name() {
+        String name = "test1";
+        CarName carName = new CarName(name);
+        assertEquals(name, carName.getName());
     }
 }
