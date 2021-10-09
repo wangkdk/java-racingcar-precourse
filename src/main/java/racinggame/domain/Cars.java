@@ -5,14 +5,20 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import nextstep.utils.Randoms;
+
 public class Cars {
     public static final String VALIDATE_CAR_NAMES_MESSAGE = "[ERROR] 자동차 이름은 중복될 수 없습니다.";
+    public static final int RACING_MIN_NUMBER = 0;
+    public static final int RACING_MAX_NUMBER = 9;
 
     private final List<Car> cars;
+    private final RacingResult racingResult;
 
     public Cars(List<String> carNames) {
         validateDuplicateCarNames(carNames);
         cars = mapCars(carNames);
+        racingResult = new RacingResult();
     }
 
     private void validateDuplicateCarNames(List<String> carNames) {
@@ -29,5 +35,14 @@ public class Cars {
             cars.add(new Car(carName));
         }
         return cars;
+    }
+
+    public RacingResult play() {
+        for (Car car : cars) {
+            car.play(new RacingNumber(Randoms.pickNumberInRange(RACING_MIN_NUMBER, RACING_MAX_NUMBER)));
+            racingResult.addReport(car.report());
+        }
+        racingResult.addReport("");
+        return racingResult;
     }
 }
