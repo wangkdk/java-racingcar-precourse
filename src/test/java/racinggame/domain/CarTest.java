@@ -17,8 +17,8 @@ public class CarTest {
     @Test
     @DisplayName("자동차_경주_go")
     void racing_go() {
-        CarStatus number4 = car.play(4);
-        CarStatus number9 = car.play(9);
+        CarStatus number4 = car.play(new RacingNumber(4));
+        CarStatus number9 = car.play(new RacingNumber(9));
 
         assertEquals(CarStatus.GO, number4);
         assertEquals(CarStatus.GO, number9);
@@ -27,8 +27,8 @@ public class CarTest {
     @Test
     @DisplayName("자동차_경주_stop")
     void racing_stop() {
-        CarStatus number0 = car.play(0);
-        CarStatus number3 = car.play(3);
+        CarStatus number0 = car.play(new RacingNumber(0));
+        CarStatus number3 = car.play(new RacingNumber(3));
 
         assertEquals(CarStatus.STOP, number0);
         assertEquals(CarStatus.STOP, number3);
