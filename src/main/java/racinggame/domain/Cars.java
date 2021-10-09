@@ -12,10 +12,7 @@ public class Cars {
 
     public Cars(List<String> carNames) {
         validateDuplicateCarNames(carNames);
-        cars = new ArrayList<>();
-        for (String carName : carNames) {
-            cars.add(new Car(carName));
-        }
+        cars = mapCars(carNames);
     }
 
     private void validateDuplicateCarNames(List<String> carNames) {
@@ -24,5 +21,13 @@ public class Cars {
         if (nonDuplicateCarNames.size() != carNamesSize) {
             throw new IllegalArgumentException(VALIDATE_CAR_NAMES_MESSAGE);
         }
+    }
+
+    private static List<Car> mapCars(List<String> carNames) {
+        List<Car> cars = new ArrayList<>();
+        for (String carName : carNames) {
+            cars.add(new Car(carName));
+        }
+        return cars;
     }
 }
