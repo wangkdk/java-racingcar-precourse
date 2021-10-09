@@ -17,20 +17,18 @@ public class CarTest {
     @Test
     @DisplayName("자동차_경주_go")
     void racing_go() {
-        CarStatus number4 = car.play(new RacingNumber(4));
-        CarStatus number9 = car.play(new RacingNumber(9));
+        car.play(new RacingNumber(4));
+        car.play(new RacingNumber(9));
 
-        assertEquals(CarStatus.GO, number4);
-        assertEquals(CarStatus.GO, number9);
+        assertEquals(2, car.getPosition());
     }
 
     @Test
     @DisplayName("자동차_경주_stop")
     void racing_stop() {
-        CarStatus number0 = car.play(new RacingNumber(0));
-        CarStatus number3 = car.play(new RacingNumber(3));
+        car.play(new RacingNumber(0));
+        car.play(new RacingNumber(3));
 
-        assertEquals(CarStatus.STOP, number0);
-        assertEquals(CarStatus.STOP, number3);
+        assertEquals(0, car.getPosition());
     }
 }
