@@ -10,7 +10,7 @@ public class Car {
 
     public void play(RacingNumber racingNumber) {
         CarStatus carStatus = racingNumber.match();
-        if (CarStatus.GO == carStatus) {
+        if (carStatus.isGo()) {
             position++;
         }
     }
