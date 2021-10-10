@@ -30,4 +30,8 @@ public class Car {
         }
         return display;
     }
+
+    public int compareToWinnerPosition(Car winnerCar) {
+        return Integer.compare(this.position.getPosition(), winnerCar.position.getPosition());
+    }
 }
