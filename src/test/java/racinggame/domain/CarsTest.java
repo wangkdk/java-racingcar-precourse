@@ -31,9 +31,8 @@ public class CarsTest {
     @DisplayName("자동차_경주_결과")
     void racing_cars_reports() {
         cars.play();
-        cars.play();
         RacingResult racingResult = cars.play();
-        assertThat(racingResult.getReports())
-            .hasSize(12);
+        assertThat(racingResult.reports())
+            .hasSize(3);
     }
 }

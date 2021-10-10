@@ -1,6 +1,10 @@
 package racinggame.domain;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -11,19 +15,19 @@ class RacingResultTest {
 
     @BeforeEach
     void setUp() {
-        racingResult = new RacingResult();
+        List<Car> cars = Arrays.asList(
+            new Car("test1"),
+            new Car("test2"),
+            new Car("test3")
+        );
+        racingResult = new RacingResult(cars);
     }
 
     @Test
-    @DisplayName("결과 입력 테스트")
-    void add_report() {
-        String report1 = "test1";
-        String report2 = "test2";
-        String report3 = "test3";
-        racingResult.addReport(report1);
-        racingResult.addReport(report2);
-        racingResult.addReport(report3);
-        assertThat(racingResult.getReports())
-            .containsExactly(report1, report2, report3);
+    @DisplayName("실행_결과_테스트")
+    void result() {
+        List<String> reports = racingResult.reports();
+        assertEquals(3, reports.size());
+        assertThat(reports).containsExactly("test1 : ", "test2 : ", "test3 : ");
     }
 }

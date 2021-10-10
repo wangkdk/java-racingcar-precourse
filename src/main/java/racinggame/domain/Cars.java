@@ -13,12 +13,10 @@ public class Cars {
     public static final int RACING_MAX_NUMBER = 9;
 
     private final List<Car> cars;
-    private final RacingResult racingResult;
 
     public Cars(List<String> carNames) {
         validateDuplicateCarNames(carNames);
         cars = mapCars(carNames);
-        racingResult = new RacingResult();
     }
 
     private void validateDuplicateCarNames(List<String> carNames) {
@@ -38,11 +36,10 @@ public class Cars {
     }
 
     public RacingResult play() {
+        RacingResult racingResult = new RacingResult(this.cars);
         for (Car car : cars) {
             car.play(new RacingNumber(Randoms.pickNumberInRange(RACING_MIN_NUMBER, RACING_MAX_NUMBER)));
-            racingResult.addReport(car.report());
         }
-        racingResult.addReport("");
         return racingResult;
     }
 }
