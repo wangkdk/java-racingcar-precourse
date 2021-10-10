@@ -31,8 +31,15 @@ public class Car {
         return display;
     }
 
-    public int compareToWinnerPosition(Car winnerCar) {
-        return Integer.compare(this.position.getPosition(), winnerCar.position.getPosition());
+    public CarCompareStatus compareToWinnerPosition(Car winnerCar) {
+        int compare = Integer.compare(this.position.getPosition(), winnerCar.position.getPosition());
+        if (compare == 1) {
+            return CarCompareStatus.WIN;
+        }
+        if (compare == 0) {
+            return CarCompareStatus.DRAW;
+        }
+        return CarCompareStatus.LOSE;
     }
 
     public String getName() {

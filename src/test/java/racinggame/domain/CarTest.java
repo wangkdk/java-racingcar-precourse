@@ -42,8 +42,8 @@ public class CarTest {
         car.play(new RacingNumber(5));
         car.play(new RacingNumber(5));
         winnerCar.play(new RacingNumber(5));
-        int compareResult = this.car.compareToWinnerPosition(winnerCar);
-        assertEquals(1, compareResult);
+        CarCompareStatus carCompareStatus = this.car.compareToWinnerPosition(winnerCar);
+        assertEquals(CarCompareStatus.WIN, carCompareStatus);
     }
 
     @Test
@@ -51,16 +51,16 @@ public class CarTest {
     void car_position_compare_same() {
         car.play(new RacingNumber(5));
         winnerCar.play(new RacingNumber(5));
-        int compareResult = this.car.compareToWinnerPosition(winnerCar);
-        assertEquals(0, compareResult);
+        CarCompareStatus carCompareStatus = this.car.compareToWinnerPosition(winnerCar);
+        assertEquals(CarCompareStatus.DRAW, carCompareStatus);
     }
 
     @Test
     @DisplayName("자동차_위치_비교_패배")
     void car_position_compare_lose() {
         winnerCar.play(new RacingNumber(5));
-        int compareResult = this.car.compareToWinnerPosition(winnerCar);
-        assertEquals(-1, compareResult);
+        CarCompareStatus carCompareStatus = this.car.compareToWinnerPosition(winnerCar);
+        assertEquals(CarCompareStatus.LOSE, carCompareStatus);
     }
 
     @Test

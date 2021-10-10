@@ -25,18 +25,17 @@ public class RacingResult {
         winnerCars.add(cars.get(0));
         for (int i = 1; i < cars.size(); i++) {
             Car car = cars.get(i);
-            int compareResult = car.compareToWinnerPosition(winnerCars.get(0));
-            setWinner(compareResult, car);
+            CarCompareStatus carCompareStatus = car.compareToWinnerPosition(winnerCars.get(0));
+            setWinner(carCompareStatus, car);
         }
         return createWinnerReport();
     }
 
-    private void setWinner(int compareResult, Car car) {
-        if (compareResult == 0) {
+    private void setWinner(CarCompareStatus carCompareStatus, Car car) {
+        if (carCompareStatus.isWin()) {
             winnerCars.add(car);
         }
-
-        if (compareResult == 1) {
+        if (carCompareStatus.isDraw()) {
             winnerCars.clear();
             winnerCars.add(car);
         }
