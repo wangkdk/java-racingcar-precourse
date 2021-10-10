@@ -34,4 +34,8 @@ public class Car {
     public int compareToWinnerPosition(Car winnerCar) {
         return Integer.compare(this.position.getPosition(), winnerCar.position.getPosition());
     }
+
+    public String getName() {
+        return name.getName();
+    }
 }

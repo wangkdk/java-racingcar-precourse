@@ -62,4 +62,10 @@ public class CarTest {
         int compareResult = this.car.compareToWinnerPosition(winnerCar);
         assertEquals(-1, compareResult);
     }
+
+    @Test
+    @DisplayName("자동차_이름_가져오기")
+    void get_car_name() {
+        assertEquals(CAR_NAME, car.getName());
+    }
 }
