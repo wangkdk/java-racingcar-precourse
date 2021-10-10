@@ -1,8 +1,8 @@
 package racinggame.domain;
 
 public class Car {
-    private final static String COLON = " : ";
-    private final static String DASH = "-";
+    private static final String COLON = " : ";
+    private static final String DASH = "-";
 
     private final CarName name;
     private final CarPosition position;
