@@ -5,11 +5,14 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class CarTest {
     private static final String COLON = " : ";
-    public static final String CAR_NAME = "car";
-    public static final String WINNER_CAR_NAME = "win";
+    private static final String DASH = "-";
+    private static final String CAR_NAME = "car";
+    private static final String WINNER_CAR_NAME = "win";
 
     private Car car;
     private Car winnerCar;
@@ -20,19 +23,19 @@ public class CarTest {
         winnerCar = new Car(WINNER_CAR_NAME);
     }
 
-    @Test
+    @ParameterizedTest
     @DisplayName("자동차_경주_go")
-    void racing_go() {
-        car.play(new RacingNumber(4));
-        car.play(new RacingNumber(9));
-        assertEquals(CAR_NAME + COLON + "--", car.report());
+    @ValueSource(ints = {4, 9})
+    void racing_go(int number) {
+        car.play(new RacingNumber(number));
+        assertEquals(CAR_NAME + COLON + DASH, car.report());
     }
 
-    @Test
+    @ParameterizedTest
     @DisplayName("자동차_경주_stop")
-    void racing_stop() {
-        car.play(new RacingNumber(0));
-        car.play(new RacingNumber(3));
+    @ValueSource(ints = {0, 3})
+    void racing_stop(int number) {
+        car.play(new RacingNumber(number));
         assertEquals(CAR_NAME + COLON, car.report());
     }
 

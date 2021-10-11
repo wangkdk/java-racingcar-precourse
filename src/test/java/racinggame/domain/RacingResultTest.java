@@ -12,7 +12,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class RacingResultTest {
-    public static final String VALIDATE_PARTICIPATE_MIN_MESSAGE = "[ERROR] 최소 1대 이상의 자동차가 참가해야 합니다.";
+    private static final String VALIDATE_PARTICIPATE_MIN_MESSAGE = "[ERROR] 최소 1대 이상의 자동차가 참가해야 합니다.";
+    private static final String COLON = " : ";
+    private static final String DASH = "-";
+    private static final String COMMA = ",";
 
     private RacingResult racingResult;
     private Car car1;
@@ -39,9 +42,9 @@ class RacingResultTest {
         List<String> reports = racingResult.reports();
         assertEquals(3, reports.size());
         assertThat(reports).containsExactly(
-            car1.getName() + " : " + "--",
-            car2.getName() + " : ",
-            car3.getName() + " : " + "-"
+            car1.getName() + COLON + DASH + DASH,
+            car2.getName() + COLON,
+            car3.getName() + COLON + DASH
         );
     }
 
@@ -59,7 +62,7 @@ class RacingResultTest {
         car1.play(new RacingNumber(5));
         car3.play(new RacingNumber(5));
         String byWinner = racingResult.reportByWinner();
-        assertEquals(car1.getName() + "," + car3.getName(), byWinner);
+        assertEquals(car1.getName() + COMMA + car3.getName(), byWinner);
     }
 
     @Test
@@ -78,6 +81,6 @@ class RacingResultTest {
         car3.play(new RacingNumber(5));
         racingResult.reportByWinner();
         String byWinner = racingResult.reportByWinner();
-        assertEquals(car1.getName() + "," + car3.getName(), byWinner);
+        assertEquals(car1.getName() + COMMA + car3.getName(), byWinner);
     }
 }

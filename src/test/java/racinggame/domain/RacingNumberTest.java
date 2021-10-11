@@ -5,36 +5,38 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class RacingNumberTest {
-    @Test
+    @ParameterizedTest
     @DisplayName("자동차_경주_번호_0_9_검증")
-    void racing_number_0_9_valid() {
-        new RacingNumber(0);
-        new RacingNumber(9);
+    @ValueSource(ints = {0, 9})
+    void racing_number_0_9_valid(int number) {
+        new RacingNumber(number);
     }
 
-    @Test
+    @ParameterizedTest
     @DisplayName("자동차_경주_번호_0_9_검증_예외")
-    void racing_number_0_9_valid_exception() {
-        assertThatThrownBy(() -> new RacingNumber(-1))
-            .isInstanceOf(IllegalArgumentException.class);
-
-        assertThatThrownBy(() -> new RacingNumber(10))
+    @ValueSource(ints = {-1, 10})
+    void racing_number_0_9_valid_exception(int number) {
+        assertThatThrownBy(() -> new RacingNumber(number))
             .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    @DisplayName("자동차_경주_match_검증")
-    void racing_number_match_valid() {
-        RacingNumber go4 = new RacingNumber(4);
-        RacingNumber go9 = new RacingNumber(9);
-        RacingNumber stop0 = new RacingNumber(0);
-        RacingNumber stop3 = new RacingNumber(3);
+    @ParameterizedTest
+    @DisplayName("자동차_경주_match_전진")
+    @ValueSource(ints = {4, 9})
+    void racing_number_match_go(int number) {
+        RacingNumber racingNumber = new RacingNumber(number);
+        assertEquals(CarStatus.GO, racingNumber.match());
+    }
 
-        assertEquals(CarStatus.GO, go4.match());
-        assertEquals(CarStatus.GO, go9.match());
-        assertEquals(CarStatus.STOP, stop0.match());
-        assertEquals(CarStatus.STOP, stop3.match());
+    @ParameterizedTest
+    @DisplayName("자동차_경주_match_멈춤")
+    @ValueSource(ints = {0, 3})
+    void racing_number_match_stop(int number) {
+        RacingNumber racingNumber = new RacingNumber(number);
+        assertEquals(CarStatus.STOP, racingNumber.match());
     }
 }
