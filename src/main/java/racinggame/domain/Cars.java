@@ -15,11 +15,13 @@ public class Cars {
     public static final int RACING_PARTICIPATE_MIN_NUMBER = 1;
 
     private final List<Car> cars;
+    private final RacingResult racingResult;
 
     public Cars(List<String> carNames) {
         validateCarsSize(carNames);
         validateDuplicateCarNames(carNames);
         cars = mapCars(carNames);
+        racingResult = new RacingResult(cars);
     }
 
     private void validateCarsSize(List<String> carNames) {
@@ -50,7 +52,7 @@ public class Cars {
         }
     }
 
-    public RacingResult rankBoard() {
-        return new RacingResult(this.cars);
+    public RacingResult racingResult() {
+        return racingResult;
     }
 }
