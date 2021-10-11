@@ -22,6 +22,7 @@ public class RacingInputView {
     public static int inputPlayCount() {
         System.out.println(INPUT_PLAY_COUNT_MESSAGE);
         String playCount = Console.readLine();
+        System.out.println();
         try {
             return Integer.parseInt(playCount);
         } catch (NumberFormatException exception) {

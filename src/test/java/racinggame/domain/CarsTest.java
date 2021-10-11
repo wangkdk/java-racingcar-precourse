@@ -40,7 +40,7 @@ public class CarsTest {
     @DisplayName("자동차_경주_결과")
     void racing_cars_reports() {
         cars.play();
-        RacingResult racingResult = cars.play();
+        RacingResult racingResult = cars.rankBoard();
         assertThat(racingResult.reports())
             .hasSize(3);
     }

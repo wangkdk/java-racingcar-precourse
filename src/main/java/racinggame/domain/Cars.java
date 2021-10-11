@@ -44,11 +44,13 @@ public class Cars {
         return cars;
     }
 
-    public RacingResult play() {
-        RacingResult racingResult = new RacingResult(this.cars);
+    public void play() {
         for (Car car : cars) {
             car.play(new RacingNumber(Randoms.pickNumberInRange(RACING_MIN_NUMBER, RACING_MAX_NUMBER)));
         }
-        return racingResult;
+    }
+
+    public RacingResult rankBoard() {
+        return new RacingResult(this.cars);
     }
 }
