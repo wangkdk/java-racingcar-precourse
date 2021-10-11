@@ -1,9 +1,11 @@
 package racinggame;
 
-import nextstep.test.NSTest;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import nextstep.test.NSTest;
 
 public class ApplicationTest extends NSTest {
     private static final int MOVING_FORWARD = 4;
@@ -32,6 +34,24 @@ public class ApplicationTest extends NSTest {
         });
     }
 
+    @Test
+    @DisplayName("이름에_대한_예외_처리_공백만_입력")
+    void name_trim_exception() {
+        assertSimpleTest(() -> {
+            runNoLineFound(" ");
+            verify(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("이름에_대한_예외_처리_콤마만_입력")
+    void name_comma_exception() {
+        assertSimpleTest(() -> {
+            runNoLineFound(",");
+            verify(ERROR_MESSAGE);
+        });
+    }
+
     @AfterEach
     void tearDown() {
         outputStandard();
@@ -39,6 +59,6 @@ public class ApplicationTest extends NSTest {
 
     @Override
     public void runMain() {
-        Application.main(new String[]{});
+        Application.main(new String[] {});
     }
 }
