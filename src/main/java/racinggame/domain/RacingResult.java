@@ -33,10 +33,10 @@ public class RacingResult {
 
     private void setWinner(CarCompareStatus carCompareStatus, Car car) {
         if (carCompareStatus.isWin()) {
+            winnerCars.clear();
             winnerCars.add(car);
         }
         if (carCompareStatus.isDraw()) {
-            winnerCars.clear();
             winnerCars.add(car);
         }
     }
