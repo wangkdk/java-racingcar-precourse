@@ -6,6 +6,7 @@ import racinggame.view.RacingInputView;
 public class RacingGame {
     public void play() {
         Cars cars = createCars();
+        int playCount = RacingInputView.inputPlayCount();
     }
 
     private static Cars createCars() {
