@@ -3,6 +3,7 @@ package racinggame.domain;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,6 +12,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class RacingResultTest {
+    public static final String VALIDATE_PARTICIPATE_MIN_MESSAGE = "[ERROR] 최소 1대 이상의 자동차가 참가해야 합니다.";
+
     private RacingResult racingResult;
     private Car car1;
     private Car car2;
@@ -55,6 +58,25 @@ class RacingResultTest {
     void winner_two() {
         car1.play(new RacingNumber(5));
         car3.play(new RacingNumber(5));
+        String byWinner = racingResult.reportByWinner();
+        assertEquals(car1.getName() + "," + car3.getName(), byWinner);
+    }
+
+    @Test
+    @DisplayName("경기_우승자_확인_참가_자동차_0대")
+    void winner_participate_zero_exception() {
+        RacingResult racingResult = new RacingResult(new ArrayList<>());
+        assertThatThrownBy(racingResult::reportByWinner)
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining(VALIDATE_PARTICIPATE_MIN_MESSAGE);
+    }
+
+    @Test
+    @DisplayName("경기_우승자_확인_여러번_확인")
+    void report_by_winner_method_many_call() {
+        car1.play(new RacingNumber(5));
+        car3.play(new RacingNumber(5));
+        racingResult.reportByWinner();
         String byWinner = racingResult.reportByWinner();
         assertEquals(car1.getName() + "," + car3.getName(), byWinner);
     }
