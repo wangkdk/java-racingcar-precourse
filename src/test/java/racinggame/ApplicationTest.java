@@ -35,6 +35,25 @@ public class ApplicationTest extends NSTest {
     }
 
     @Test
+    @DisplayName("전진_정지_공동_우승")
+    void go_stop_many_winner() {
+        assertRandomTest(() -> {
+            run("test1,test2,test3", "3");
+            verify("test1 : -", "test2 : -", "test3 : ", "최종 우승자는 test1,test2 입니다.");
+        }, MOVING_FORWARD, MOVING_FORWARD, STOP);
+    }
+
+    @Test
+    @DisplayName("전진_여러번_정지_공동_우승")
+    void many_go_stop_many_winner() {
+        assertRandomTest(() -> {
+            run("test1,test2,test3", "2");
+            verify("test1 : -", "test2 : -", "test3 : -", "test1 : --", "test2 : -", "test3 : --",
+                "최종 우승자는 test1,test3 입니다.");
+        }, MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD, STOP, MOVING_FORWARD);
+    }
+
+    @Test
     @DisplayName("이름에_대한_예외_처리_공백만_입력")
     void name_trim_exception() {
         assertSimpleTest(() -> {
@@ -48,6 +67,33 @@ public class ApplicationTest extends NSTest {
     void name_comma_exception() {
         assertSimpleTest(() -> {
             runNoLineFound(",");
+            verify(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("경기_회수에_대한_예외_처리_0_입력")
+    void play_count_min() {
+        assertSimpleTest(() -> {
+            runNoLineFound("pobi,woni", "0");
+            verify(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("경기_회수에_대한_예외_처리_공백_입력")
+    void play_count_space_input() {
+        assertSimpleTest(() -> {
+            runNoLineFound("pobi,woni", " ");
+            verify(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("경기_회수에_대한_예외_처리_문자_입력")
+    void play_count_char_input() {
+        assertSimpleTest(() -> {
+            runNoLineFound("pobi,woni", "aa");
             verify(ERROR_MESSAGE);
         });
     }
