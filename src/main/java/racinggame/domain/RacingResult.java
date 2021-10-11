@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RacingResult {
-    public static final String VALIDATE_PARTICIPATE_MIN_MESSAGE = "[ERROR] 최소 1대 이상의 자동차가 참가해야 합니다.";
-    public static final int RACING_PARTICIPATE_MIN_NUMBER = 1;
+    private static final String VALIDATE_PARTICIPATE_MIN_MESSAGE = "[ERROR] 최소 1대 이상의 자동차가 참가해야 합니다.";
+    private static final int RACING_PARTICIPATE_MIN_NUMBER = 1;
 
     private final List<Car> cars;
     private final List<Car> winnerCars;

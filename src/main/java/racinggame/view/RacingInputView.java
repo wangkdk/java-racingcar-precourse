@@ -12,6 +12,9 @@ public class RacingInputView {
     private static final String VALID_PLAY_COUNT_MESSAGE = "[ERROR] 경주 횟수는 숫자로만 입력 가능합니다.";
     private static final String COMMA = ",";
 
+    private RacingInputView() {
+    }
+
     public static List<String> inputCarNames() {
         System.out.println(INPUT_CAR_NAMES_MESSAGE);
         String carNames = Console.readLine().trim();

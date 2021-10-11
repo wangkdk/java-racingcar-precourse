@@ -5,7 +5,7 @@ import racinggame.view.RacingInputView;
 import racinggame.view.RacingOutputView;
 
 public class RacingGame {
-    public static final String PLAY_RESULT_MESSAGE = "실행 결과";
+    private static final String PLAY_RESULT_MESSAGE = "실행 결과";
 
     public void start() {
         Cars cars = createCars();
