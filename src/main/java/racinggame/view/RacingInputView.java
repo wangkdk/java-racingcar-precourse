@@ -10,8 +10,7 @@ public class RacingInputView {
     private static final int PLAY_COUNT_MIN_NUMBER = 1;
     private static final String INPUT_CAR_NAMES_MESSAGE = "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)";
     private static final String INPUT_PLAY_COUNT_MESSAGE = "시도할 회수는 몇회인가요?";
-    private static final String VALID_PLAY_COUNT_MESSAGE = "[ERROR] 경주 횟수는 숫자로만 입력 가능합니다.";
-    private static final String VALID_PLAY_COUNT_MIN_MESSAGE = "[ERROR] 경주 횟수는 1회 이상이여야 합니다.";
+    private static final String VALID_PLAY_COUNT_MESSAGE = "[ERROR] 경주 회수는 1 이상 숫자로만 입력 가능합니다.";
     private static final String COMMA = ",";
 
     private RacingInputView() {
@@ -28,22 +27,23 @@ public class RacingInputView {
         System.out.println(INPUT_PLAY_COUNT_MESSAGE);
         String inputPlayCount = Console.readLine();
         System.out.println();
+        return convertToPlayCount(inputPlayCount);
+    }
+
+    private static int convertToPlayCount(String inputPlayCount) {
         try {
             int playCount = Integer.parseInt(inputPlayCount);
-            validatePlayCount(playCount);
+            validateMinPlayCount(playCount);
             return playCount;
-        } catch (NumberFormatException exception) {
-            System.out.println(VALID_PLAY_COUNT_MESSAGE);
-            return inputPlayCount();
         } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
+            System.out.println(VALID_PLAY_COUNT_MESSAGE);
             return inputPlayCount();
         }
     }
 
-    private static void validatePlayCount(int playCount) {
+    private static void validateMinPlayCount(int playCount) {
         if (playCount < PLAY_COUNT_MIN_NUMBER) {
-            throw new IllegalArgumentException(VALID_PLAY_COUNT_MIN_MESSAGE);
+            throw new IllegalArgumentException();
         }
     }
 }
