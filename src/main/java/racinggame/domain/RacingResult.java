@@ -6,11 +6,13 @@ import java.util.List;
 public class RacingResult {
     private static final String VALIDATE_PARTICIPATE_MIN_MESSAGE = "[ERROR] 최소 1대 이상의 자동차가 참가해야 합니다.";
     private static final int RACING_PARTICIPATE_MIN_NUMBER = 1;
+    private static final String COMMA = ",";
 
     private final List<Car> cars;
     private final List<Car> winnerCars;
 
     protected RacingResult(List<Car> cars) {
+        validateCarsSize(cars);
         this.cars = cars;
         this.winnerCars = new ArrayList<>();
     }
@@ -24,7 +26,6 @@ public class RacingResult {
     }
 
     public String reportByWinner() {
-        validateCarsSize();
         winnerCars.clear();
         winnerCars.add(cars.get(0));
         for (int i = 1; i < cars.size(); i++) {
@@ -50,10 +51,10 @@ public class RacingResult {
         for (Car winnerCar : winnerCars) {
             carNames.add(winnerCar.getName());
         }
-        return String.join(",", carNames);
+        return String.join(COMMA, carNames);
     }
 
-    private void validateCarsSize() {
+    private void validateCarsSize(List<Car> cars) {
         if (cars.size() < RACING_PARTICIPATE_MIN_NUMBER) {
             throw new IllegalArgumentException(VALIDATE_PARTICIPATE_MIN_MESSAGE);
         }

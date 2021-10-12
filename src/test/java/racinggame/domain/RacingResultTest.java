@@ -66,10 +66,9 @@ class RacingResultTest {
     }
 
     @Test
-    @DisplayName("경기_우승자_확인_참가_자동차_0대")
+    @DisplayName("경기_결과_확인_참가_자동차_0대")
     void winner_participate_zero_exception() {
-        RacingResult racingResult = new RacingResult(new ArrayList<>());
-        assertThatThrownBy(racingResult::reportByWinner)
+        assertThatThrownBy(() -> new RacingResult(new ArrayList<>()))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(VALIDATE_PARTICIPATE_MIN_MESSAGE);
     }
