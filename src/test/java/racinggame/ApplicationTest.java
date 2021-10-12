@@ -72,7 +72,7 @@ public class ApplicationTest extends NSTest {
     }
 
     @Test
-    @DisplayName("경기_회수에_대한_예외_처리_0_입력")
+    @DisplayName("경기_횟수에_대한_예외_처리_0_입력")
     void play_count_min() {
         assertSimpleTest(() -> {
             runNoLineFound("pobi,woni", "0");
@@ -81,7 +81,7 @@ public class ApplicationTest extends NSTest {
     }
 
     @Test
-    @DisplayName("경기_회수에_대한_예외_처리_공백_입력")
+    @DisplayName("경기_횟수에_대한_예외_처리_공백_입력")
     void play_count_space_input() {
         assertSimpleTest(() -> {
             runNoLineFound("pobi,woni", " ");
@@ -90,7 +90,7 @@ public class ApplicationTest extends NSTest {
     }
 
     @Test
-    @DisplayName("경기_회수에_대한_예외_처리_문자_입력")
+    @DisplayName("경기_횟수에_대한_예외_처리_문자_입력")
     void play_count_char_input() {
         assertSimpleTest(() -> {
             runNoLineFound("pobi,woni", "aa");

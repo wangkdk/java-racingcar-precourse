@@ -25,7 +25,7 @@ public class RacingGame {
     private static void playGame(Cars cars) {
         int playCount = RacingInputView.inputPlayCount();
         System.out.println(PLAY_RESULT_MESSAGE);
-        for (int i = 1; i <= playCount; i++) {
+        for (int i = 0; i < playCount; i++) {
             cars.play();
             RacingOutputView.printRacingResultByRound(cars.racingResult());
         }

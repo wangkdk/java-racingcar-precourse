@@ -41,9 +41,7 @@ class RacingResultTest {
         car3.play(new RacingNumber(6));
         List<String> reports = racingResult.reports();
         assertEquals(3, reports.size());
-        assertThat(reports).containsExactly(
-            car1.getName() + COLON + DASH + DASH,
-            car2.getName() + COLON,
+        assertThat(reports).containsExactly(car1.getName() + COLON + DASH + DASH, car2.getName() + COLON,
             car3.getName() + COLON + DASH
         );
     }

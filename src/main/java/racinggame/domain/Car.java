@@ -24,11 +24,11 @@ public class Car {
     }
 
     private StringBuilder createPositionDisplay() {
-        StringBuilder display = new StringBuilder();
+        StringBuilder positionDisplay = new StringBuilder();
         for (int i = 0; i < position.getPosition(); i++) {
-            display.append(DASH);
+            positionDisplay.append(DASH);
         }
-        return display;
+        return positionDisplay;
     }
 
     public CarCompareStatus compareToWinnerPosition(Car winnerCar) {

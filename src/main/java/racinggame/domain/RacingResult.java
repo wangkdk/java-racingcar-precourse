@@ -17,6 +17,12 @@ public class RacingResult {
         this.winnerCars = new ArrayList<>();
     }
 
+    private static void validateCarsSize(List<Car> cars) {
+        if (cars.size() < RACING_PARTICIPATE_MIN_NUMBER) {
+            throw new IllegalArgumentException(VALIDATE_PARTICIPATE_MIN_MESSAGE);
+        }
+    }
+
     public List<String> reports() {
         List<String> reports = new ArrayList<>();
         for (Car car : cars) {
@@ -52,11 +58,5 @@ public class RacingResult {
             carNames.add(winnerCar.getName());
         }
         return String.join(COMMA, carNames);
-    }
-
-    private void validateCarsSize(List<Car> cars) {
-        if (cars.size() < RACING_PARTICIPATE_MIN_NUMBER) {
-            throw new IllegalArgumentException(VALIDATE_PARTICIPATE_MIN_MESSAGE);
-        }
     }
 }
